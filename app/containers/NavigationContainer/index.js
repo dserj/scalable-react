@@ -15,12 +15,12 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectNavigationContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import Navigation from '../../components/Navigation';
 
 export class NavigationContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
-      </div>
+      <Navigation />
     );
   }
 }
