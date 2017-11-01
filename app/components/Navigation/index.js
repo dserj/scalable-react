@@ -12,10 +12,13 @@ const Wrapper = styled.div`
   background-color: red;
 `;
 
-function Navigation({ topics }) {
+function Navigation({ topics, selectTopic }) {
+  const topicNodes = topics.map((t) => (
+    <div onClick={() => selectTopic(t)} key={t.name}>{t.name}</div> // eslint-disable-line
+  ));
   return (
     <Wrapper>
-      This is a navigation component with {topics.length} topics inside
+      {topicNodes}
     </Wrapper>
   );
 }
@@ -27,6 +30,7 @@ Navigation.propTypes = {
       description: PropTypes.string.isRequired,
     })
   ).isRequired,
+  selectTopic: PropTypes.func.isRequired,
 };
 
 export default Navigation;

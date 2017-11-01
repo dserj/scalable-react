@@ -25,3 +25,10 @@ export function requestTopicsFailed(message) {
     message,
   };
 }
+
+export function selectTopic(topic) {
+  return {
+    type: actions.SELECT_TOPIC,
+    topic,
+  };
+}

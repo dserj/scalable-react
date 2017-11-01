@@ -16,7 +16,7 @@ import makeSelectNavigationContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Navigation from '../../components/Navigation';
-import { requestTopics } from './actions';
+import { requestTopics, selectTopic } from './actions';
 
 export class NavigationContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
@@ -24,7 +24,7 @@ export class NavigationContainer extends React.Component { // eslint-disable-lin
   }
   render() {
     return (
-      <Navigation {...this.props.navigationcontainer} />
+      <Navigation topics={this.props.navigationcontainer.topics} selectTopic={this.props.selectTopic} />
     );
   }
 }
@@ -32,6 +32,7 @@ export class NavigationContainer extends React.Component { // eslint-disable-lin
 NavigationContainer.propTypes = {
   navigationcontainer: PropTypes.object.isRequired,
   requestTopics: PropTypes.func.isRequired,
+  selectTopic: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -41,6 +42,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     requestTopics: () => dispatch(requestTopics()),
+    selectTopic: (t) => dispatch(selectTopic(t)),
   };
 }
 
