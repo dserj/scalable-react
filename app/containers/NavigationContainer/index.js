@@ -16,8 +16,12 @@ import makeSelectNavigationContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Navigation from '../../components/Navigation';
+import { requestTopics } from './actions';
 
 export class NavigationContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentWillMount() {
+    this.props.requestTopics();
+  }
   render() {
     return (
       <Navigation {...this.props.navigationcontainer} />
@@ -27,6 +31,7 @@ export class NavigationContainer extends React.Component { // eslint-disable-lin
 
 NavigationContainer.propTypes = {
   navigationcontainer: PropTypes.object.isRequired,
+  requestTopics: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -35,7 +40,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    requestTopics: () => dispatch(requestTopics()),
   };
 }
 

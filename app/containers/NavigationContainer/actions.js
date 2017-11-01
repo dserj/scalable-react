@@ -4,12 +4,24 @@
  *
  */
 
-import {
-  DEFAULT_ACTION,
-} from './constants';
+import * as actions from './constants';
 
-export function defaultAction() {
+export function requestTopics() {
   return {
-    type: DEFAULT_ACTION,
+    type: actions.REQUEST_TOPICS,
+  };
+}
+
+export function requestTopicsSucceeded(topics) {
+  return {
+    type: actions.REQUEST_TOPICS_SUCCEEDED,
+    topics,
+  };
+}
+
+export function requestTopicsFailed(message) {
+  return {
+    type: actions.REQUEST_TOPICS_FAILED,
+    message,
   };
 }
