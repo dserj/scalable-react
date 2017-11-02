@@ -19,7 +19,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
   return (
-    <div>
+    <div className={'container'}>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
