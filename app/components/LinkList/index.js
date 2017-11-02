@@ -7,17 +7,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Link from '../Link';
 
-const Link = styled.div`
-  background-color: blue 
-`;
+const Wrapper = styled.div``;
 
 function LinkList({ links }) {
-  const linkNodes = links.map((l) => (<Link key={l.id}>{l.url} - {l.description}</Link>));
+  const linkNodes = links.map((l) => (<Link key={l.id} link={l} />));
   return (
-    <div>
+    <Wrapper>
       {linkNodes}
-    </div>
+    </Wrapper>
   );
 }
 
