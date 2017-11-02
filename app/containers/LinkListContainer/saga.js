@@ -16,6 +16,6 @@
 //   }
 // }
 //
-// export default function* fetchLinksSaga() {
-//   // yield takeLatest(actions.SELECT_TOPIC, fetchLinks);
-// }
+export default function* fetchLinksSaga() {
+  // yield takeLatest(actions.SELECT_TOPIC, fetchLinks);
+}
