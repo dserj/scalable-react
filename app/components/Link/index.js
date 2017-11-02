@@ -16,17 +16,59 @@ const Wrapper = styled.div`
   padding: 10px;
   margin-top: 20px;
 `;
+const VotingContainer = styled.div`
+  padding: 15px;
+`;
+const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+  font-size: 16px;
+`;
+const StyledLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+const Description = styled.div`
+  color: #757575;
+`;
+const VotingCount = styled.div`
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-top: 5px;
+`;
+// const VotingIcon = styled.div`
+//   font-size: 40px;
+// `;
 
 function Link({ link }) {
   return (
     <Wrapper>
-      {link.url}
+      <VotingContainer>
+        <VotingCount>
+          {link.voteCount}
+        </VotingCount>
+      </VotingContainer>
+      <DetailsContainer>
+        <div>
+          <StyledLink href={link.url}>link.url</StyledLink>
+        </div>
+        <Description>
+          {link.description}
+        </Description>
+      </DetailsContainer>
     </Wrapper>
   );
 }
 
 Link.propTypes = {
   link: PropTypes.shape({
+    voteCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
