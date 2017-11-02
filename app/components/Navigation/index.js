@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import AppBar from '../AppBar';
 
 const Wrapper = styled.div`
   background-color: red;
@@ -18,6 +19,7 @@ function Navigation({ topics, selectTopic }) {
   ));
   return (
     <Wrapper>
+      <AppBar />
       {topicNodes}
     </Wrapper>
   );
