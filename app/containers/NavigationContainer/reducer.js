@@ -9,6 +9,7 @@ import * as actions from './constants';
 
 const initialState = fromJS({
   topics: [],
+  isDrawerOpen: false,
 });
 
 function navigationContainerReducer(state = initialState, action) {
@@ -17,6 +18,8 @@ function navigationContainerReducer(state = initialState, action) {
       return state.set('topics', action.topics);
     case actions.SELECT_TOPIC:
       return state.set('selectedTopic', action.topic);
+    case actions.TOGGLE_DRAWER:
+      return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
     default:
       return state;
   }

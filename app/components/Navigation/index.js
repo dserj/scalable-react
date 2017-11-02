@@ -8,19 +8,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AppBar from '../AppBar';
+import Drawer from '../Drawer';
 
 const Wrapper = styled.div`
   background-color: red;
 `;
 
-function Navigation({ topics, selectTopic, toggleDrawer }) {
-  const topicNodes = topics.map((t) => (
-    <div onClick={() => selectTopic(t)} key={t.name}>{t.name}</div> // eslint-disable-line
-  ));
+function Navigation({ topics, selectTopic, toggleDrawer, isDrawerOpen }) {
   return (
     <Wrapper>
       <AppBar toggleDrawer={toggleDrawer} />
-      {topicNodes}
+      <Drawer
+        items={topics}
+        selectItem={selectTopic}
+        itemLabelAttr="name"
+        itemKeyAttr="name"
+        isDrawerOpen={isDrawerOpen}
+      />
     </Wrapper>
   );
 }
@@ -34,6 +38,7 @@ Navigation.propTypes = {
   ).isRequired,
   selectTopic: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired,
 };
 
 export default Navigation;
