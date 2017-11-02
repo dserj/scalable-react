@@ -13,13 +13,13 @@ const Wrapper = styled.div`
   background-color: red;
 `;
 
-function Navigation({ topics, selectTopic }) {
+function Navigation({ topics, selectTopic, toggleDrawer }) {
   const topicNodes = topics.map((t) => (
     <div onClick={() => selectTopic(t)} key={t.name}>{t.name}</div> // eslint-disable-line
   ));
   return (
     <Wrapper>
-      <AppBar />
+      <AppBar toggleDrawer={toggleDrawer} />
       {topicNodes}
     </Wrapper>
   );
@@ -33,6 +33,7 @@ Navigation.propTypes = {
     })
   ).isRequired,
   selectTopic: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
 };
 
 export default Navigation;
