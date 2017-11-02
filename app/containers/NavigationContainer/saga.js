@@ -1,5 +1,6 @@
 // import { take, call, put, select } from 'redux-saga/effects';
 import { takeLatest, call, put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import * as actions from './constants';
 import { requestTopicsSucceeded, requestTopicsFailed } from './actions';
 
@@ -17,6 +18,13 @@ function* fetchTopics() {
   }
 }
 
-export default function* fetchTopicsSaga() {
-  yield takeLatest(actions.REQUEST_TOPICS, fetchTopics);
+function* pushTopic(action) {
+  yield put(push(`/topics/${action.topic.name}`));
+}
+
+export default function* rootSaga() {
+  yield [
+    yield takeLatest(actions.SELECT_TOPIC, pushTopic),
+    yield takeLatest(actions.REQUEST_TOPICS, fetchTopics),
+  ];
 }
