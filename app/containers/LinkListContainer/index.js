@@ -20,17 +20,20 @@ import { requestLinks } from './actions';
 
 export class LinkListContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    this.props.requestLinks(this.props.match.params.topicName);
+    // console.log('ROUTE TOPIC NAME: ', this.props.linkListContainer.routeTopicName.name);
+    this.props.requestLinks(this.props.linkListContainer.routeTopicName.name);
   }
   componentWillReceiveProps(newProps) {
-    if (newProps.match.params.topicName !== this.props.match.params.topicName) {
+    // console.log('NEW PROPS: ', newProps.match.params.topicName);
+    // console.log('SELECTOR: ', this.props.linkListContainer);
+    if (newProps.match.params.topicName !== this.props.linkListContainer.routeTopicName.name) {
       this.props.requestLinks(newProps.match.params.topicName);
     }
   }
   render() {
-    console.log('MATCH', this.props.match);
+    // console.log('MATCH', this.props.match);
     return (
-      <LinkList links={this.props.linkListContainer.links} routeTopicName={this.props.match.params.topicName} />
+      <LinkList links={this.props.linkListContainer.links} routeTopicName={this.props.linkListContainer.routeTopicName.name} />
     );
   }
 }
@@ -38,13 +41,11 @@ export class LinkListContainer extends React.PureComponent { // eslint-disable-l
 LinkListContainer.propTypes = {
   linkListContainer: PropTypes.shape({
     links: PropTypes.array.isRequired,
+    routeTopicName: PropTypes.shape({
+      name: PropTypes.string,
+    }),
   }).isRequired,
   requestLinks: PropTypes.func.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      topicName: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

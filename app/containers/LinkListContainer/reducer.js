@@ -8,14 +8,7 @@ import { fromJS } from 'immutable';
 import * as actions from './constants';
 
 const initialState = fromJS({
-  links: [
-    {
-      description: 'This is the link description',
-      url: 'https://github.com/facebook/react',
-      topicName: 'links',
-      id: 'fake',
-    },
-  ],
+  links: [],
 });
 
 function linkListContainerReducer(state = initialState, action) {
