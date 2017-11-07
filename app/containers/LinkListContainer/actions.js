@@ -19,3 +19,10 @@ export function requestLinkFailed(message) {
     message,
   };
 }
+
+export function requestLinks(topicName) {
+  return {
+    type: actions.REQUEST_LINKS,
+    topicName,
+  };
+}

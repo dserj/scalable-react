@@ -10,6 +10,7 @@
  */
 
 import React from 'react';
+import { Route } from 'react-router-dom';
 import NavigationContainer from '../../containers/NavigationContainer';
 import LinkListContainer from '../../containers/LinkListContainer';
 
@@ -18,7 +19,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <div>
         <NavigationContainer />
-        <LinkListContainer />
+        <Route path={'/topics/:topicName'} component={LinkListContainer} />
       </div>
     );
   }

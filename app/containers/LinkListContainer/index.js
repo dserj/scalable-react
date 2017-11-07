@@ -16,11 +16,21 @@ import makeSelectLinkListContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import LinkList from '../../components/LinkList';
+import { requestLinks } from './actions';
 
 export class LinkListContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  componentWillMount() {
+    this.props.requestLinks(this.props.match.params.topicName);
+  }
+  componentWillReceiveProps(newProps) {
+    if (newProps.match.params.topicName !== this.props.match.params.topicName) {
+      this.props.requestLinks(newProps.match.params.topicName);
+    }
+  }
   render() {
+    console.log('MATCH', this.props.match);
     return (
-      <LinkList links={this.props.linkListContainer.links} />
+      <LinkList links={this.props.linkListContainer.links} routeTopicName={this.props.match.params.topicName} />
     );
   }
 }
@@ -28,6 +38,12 @@ export class LinkListContainer extends React.PureComponent { // eslint-disable-l
 LinkListContainer.propTypes = {
   linkListContainer: PropTypes.shape({
     links: PropTypes.array.isRequired,
+  }).isRequired,
+  requestLinks: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      topicName: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
@@ -37,7 +53,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    requestLinks: (topicName) => { dispatch(requestLinks(topicName)); },
   };
 }
 

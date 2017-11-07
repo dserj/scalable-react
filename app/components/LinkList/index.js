@@ -11,10 +11,11 @@ import Link from '../Link';
 
 const Wrapper = styled.div``;
 
-function LinkList({ links }) {
+function LinkList({ links, routeTopicName }) {
   const linkNodes = links.map((l) => (<Link key={l.id} link={l} />));
   return (
     <Wrapper>
+      {routeTopicName}
       {linkNodes}
     </Wrapper>
   );
@@ -26,6 +27,7 @@ LinkList.propTypes = {
     url: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   })),
+  routeTopicName: PropTypes.string.isRequired,
 };
 
 export default LinkList;
