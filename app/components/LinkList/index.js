@@ -15,8 +15,8 @@ function LinkList({ links, routeTopicName }) {
   const linkNodes = links.map((l) => (<Link key={l.id} link={l} />));
   return (
     <Wrapper>
-      {routeTopicName}
-      {linkNodes}
+      <h1>{routeTopicName}</h1>
+      <div>{linkNodes}</div>
     </Wrapper>
   );
 }
