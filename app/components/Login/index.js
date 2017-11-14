@@ -6,6 +6,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import validator from 'email-validator';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -53,7 +54,10 @@ const Button = styled.div`
 
 class Login extends React.Component { // eslint-disable-line react/prefer-stateless-function
   login = () => {
-    console.log('LOGIN BUTTON CLICKED!!!', this.emailField.value);
+    const email = this.emailField.value;
+    if (!validator.validate(email)) {
+      console.error('INVALID EMAIL');
+    }
   };
   render() {
     return (
