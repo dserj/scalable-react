@@ -7,6 +7,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import validator from 'email-validator';
+import classNames from 'classnames';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -52,24 +53,45 @@ const Button = styled.div`
   }
 `;
 
+const ErrorMessage = styled.div`
+  color: #ce1313;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+`;
+
 class Login extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  state = {};
   login = () => {
     const email = this.emailField.value;
     if (!validator.validate(email)) {
-      console.error('INVALID EMAIL');
+      this.setState({
+        errorText: 'Please provide a valid e-mail',
+      });
+      return;
     }
+    this.setState({
+      errorText: null,
+    });
   };
   render() {
+    const fieldError = this.state.errorText ? (
+      <ErrorMessage>
+        {this.state.errorText}
+      </ErrorMessage>
+    ) : null;
     return (
       <Wrapper>
         <Heading>
           Login with your e-mail
         </Heading>
         <EmailInput
+          className={classNames('', { error: this.state.errorText })}
           placeholder="Your e-mail"
           innerRef={(f) => { this.emailField = f; }} // !!!IMPORTANT!!! how styles components work
           type="text"
         />
+        {fieldError}
         <ActionContainer>
           <Button>
             Cancel

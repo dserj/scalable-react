@@ -20,4 +20,9 @@ body {
   box-sizing: border-box;
 }
 
+.error
+{
+  border-color: red !important;
+}
+
 `;
