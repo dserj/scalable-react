@@ -52,6 +52,9 @@ const Button = styled.div`
 `;
 
 class Login extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  login = () => {
+    console.log('LOGIN BUTTON CLICKED!!!', this.emailField.value);
+  };
   render() {
     return (
       <Wrapper>
@@ -60,14 +63,16 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
         </Heading>
         <EmailInput
           placeholder="Your e-mail"
-          ref={(f) => { this.emailField = f; }}
+          innerRef={(f) => { this.emailField = f; }} // !!!IMPORTANT!!! how styles components work
           type="text"
         />
         <ActionContainer>
           <Button>
             Cancel
           </Button>
-          <Button>
+          <Button
+            onClick={this.login}
+          >
             Login
           </Button>
         </ActionContainer>
