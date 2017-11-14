@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const FontAwesomeStyled = styled(FontAwesome)`
   font-size: 20px;
@@ -52,7 +53,7 @@ function AppBar({ toggleDrawer }) {
         Coder daily
       </Heading>
       <LinkContainer>
-        log in
+        <Link to="/login">login</Link>
       </LinkContainer>
     </Wrapper>
   );
