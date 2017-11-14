@@ -10,16 +10,20 @@
  */
 
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavigationContainer from '../../containers/NavigationContainer';
 import LinkListContainer from '../../containers/LinkListContainer';
+import LoginContainer from '../../containers/LoginContainer';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
         <NavigationContainer />
-        <Route path={'/topics/:topicName'} component={LinkListContainer} />
+        <Switch>
+          <Route exact path={'/login'} component={LoginContainer} />
+          <Route exact path={'/topics/:topicName'} component={LinkListContainer} />
+        </Switch>
       </div>
     );
   }
