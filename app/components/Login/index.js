@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import validator from 'email-validator';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -73,6 +74,7 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
     this.setState({
       errorText: null,
     });
+    this.props.login(email);
   };
   render() {
     const fieldError = this.state.errorText ? (
@@ -108,7 +110,7 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
 }
 
 Login.propTypes = {
-
+  login: PropTypes.func.isRequired,
 };
 
 export default Login;

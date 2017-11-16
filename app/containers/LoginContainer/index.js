@@ -15,6 +15,7 @@ import makeSelectLoginContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Login from '../../components/Login';
+import { login } from './actions';
 
 export class LoginContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -35,7 +36,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    login: (email) => dispatch(login(email)),
   };
 }
 
