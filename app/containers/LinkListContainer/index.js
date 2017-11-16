@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { Route } from 'react-router-dom';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -17,6 +18,7 @@ import reducer from './reducer';
 import saga from './saga';
 import LinkList from '../../components/LinkList';
 import { requestLinks } from './actions';
+import LinkFormContainer from '../../containers/LinkFormContainer';
 
 export class LinkListContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
@@ -31,9 +33,12 @@ export class LinkListContainer extends React.PureComponent { // eslint-disable-l
     }
   }
   render() {
-    // console.log('MATCH', this.props.match);
+    console.log('MATCH', this.props.match);
     return (
-      <LinkList links={this.props.linkListContainer.links} routeTopicName={this.props.linkListContainer.routeTopicName.name} />
+      <div>
+        <LinkList links={this.props.linkListContainer.links} routeTopicName={this.props.linkListContainer.routeTopicName.name} />
+        <Route path={`${this.props.match.url}/add`} component={LinkFormContainer} />
+      </div>
     );
   }
 }
@@ -46,6 +51,9 @@ LinkListContainer.propTypes = {
     }),
   }).isRequired,
   requestLinks: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

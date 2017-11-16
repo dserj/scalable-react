@@ -22,7 +22,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         <NavigationContainer />
         <Switch>
           <Route exact path={'/login'} component={LoginContainer} />
-          <Route exact path={'/topics/:topicName'} component={LinkListContainer} />
+          <Route path={'/topics/:topicName/'} component={LinkListContainer} />
         </Switch>
       </div>
     );
