@@ -1,5 +1,8 @@
 import { createSelector } from 'reselect';
 
+// (*) how to get data from other's component state
+import selectLoginContainer from '../LoginContainer/selectors';
+
 /**
  * Direct selector to the navigationContainer state domain
  */
@@ -15,8 +18,9 @@ const selectNavigationContainerDomain = (state) => state.get('navigationContaine
  */
 
 const makeSelectNavigationContainer = () => createSelector(
-  selectNavigationContainerDomain,
-  (substate) => substate.toJS()
+  selectNavigationContainerDomain, // navigationContainer state
+  selectLoginContainer(), // (*) login container state
+  (substate, loginSubstate) => Object.assign(substate.toJS(), loginSubstate) // (*)
 );
 
 export default makeSelectNavigationContainer;

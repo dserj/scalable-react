@@ -29,6 +29,7 @@ export class NavigationContainer extends React.Component { // eslint-disable-lin
         selectTopic={this.props.selectTopic}
         toggleDrawer={this.props.toggleDrawer}
         isDrawerOpen={this.props.navigationcontainer.isDrawerOpen}
+        email={this.props.navigationcontainer.email}
       />
     );
   }

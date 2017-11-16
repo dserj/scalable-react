@@ -39,9 +39,11 @@ const Heading = styled.div`
 `;
 const LinkContainer = styled.div`
   font-size: 16px;
+  margin-top: 6px;
 `;
 
-function AppBar({ toggleDrawer }) {
+function AppBar({ toggleDrawer, email }) {
+  const loginLink = email || (<Link to="/login">login</Link>);
   return (
     <Wrapper>
       <AppBarDiv>
@@ -53,7 +55,7 @@ function AppBar({ toggleDrawer }) {
         Coder daily
       </Heading>
       <LinkContainer>
-        <Link to="/login">login</Link>
+        {loginLink}
       </LinkContainer>
     </Wrapper>
   );
@@ -61,6 +63,7 @@ function AppBar({ toggleDrawer }) {
 
 AppBar.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
+  email: PropTypes.string,
 };
 
 export default AppBar;
