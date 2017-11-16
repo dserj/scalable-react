@@ -12,3 +12,9 @@ export function login(email) {
     email,
   };
 }
+
+export function cancelLogin() {
+  return {
+    type: actions.LOGIN_CANCEL,
+  };
+}

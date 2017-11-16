@@ -9,8 +9,13 @@ export function* handleLogin() {
   yield put(goBack());
 }
 
+export function* handleCancelLogin() {
+  yield put(goBack());
+}
+
 export default function* rootSaga() {
   yield [
     yield takeLatest(actions.LOGIN, handleLogin),
+    yield takeLatest(actions.LOGIN_CANCEL, handleCancelLogin),
   ];
 }

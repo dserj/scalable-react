@@ -76,6 +76,9 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
     });
     this.props.login(email);
   };
+  cancelLogin = () => {
+    this.props.cancelLogin();
+  };
   render() {
     const fieldError = this.state.errorText ? (
       <ErrorMessage>
@@ -95,7 +98,9 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
         />
         {fieldError}
         <ActionContainer>
-          <Button>
+          <Button
+            onClick={this.cancelLogin}
+          >
             Cancel
           </Button>
           <Button
@@ -111,6 +116,7 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  cancelLogin: PropTypes.func.isRequired,
 };
 
 export default Login;
