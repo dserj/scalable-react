@@ -5,8 +5,16 @@
 */
 
 import React from 'react';
-import styled from 'styled-components';
-import classNames from 'classnames';
+import styled, { injectGlobal } from 'styled-components';
+import TextInput from '../TextInput';
+
+/* eslint no-unused-expressions: 0 */
+injectGlobal`
+  .input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+`;
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -23,16 +31,6 @@ const Heading = styled.div`
   font-size: 22px;
   color: #222;
   margin-bottom: 20px;
-`;
-
-const TextInput = styled.input`
-  border-bottom: solid 1px rgba(0,0,0,0.12);
-  padding: 5px;
-  border-top: 0;  
-  border-left: 0;  
-  border-right: 0;
-  width: 100%;
-  font-size: 18px;  
 `;
 
 const ActionContainer = styled.div`
@@ -87,16 +85,12 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
             Add a link
           </Heading>
           <TextInput
-            className={classNames('', { error: this.state.errorText })}
+            className="input"
             placeholder="URL"
-            innerRef={(f) => { this.urlField = f; }} // !!!IMPORTANT!!! innerRef ==>> how styles components work
-            type="text"
           />
           <TextInput
-            className={classNames('', { error: this.state.errorText })}
+            className="input"
             placeholder="Description"
-            innerRef={(f) => { this.descriptionField = f; }} // !!!IMPORTANT!!! innerRef ==>> how styles components work
-            type="text"
           />
           {fieldError}
           <ActionContainer>
