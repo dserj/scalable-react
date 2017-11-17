@@ -5,6 +5,7 @@
 */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { injectGlobal } from 'styled-components';
 import TextInput from '../TextInput';
 
@@ -71,7 +72,31 @@ const Overlay = styled.div`
 `;
 
 class LinkForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  state = {};
+  state = {
+    urlError: '',
+    descriptionError: '',
+  };
+  onAdd = () => {
+    const url = this.url.value();
+    const description = this.description.value();
+    let urlError = null;
+    let descriptionError = null;
+
+    if (!url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g)) {
+      urlError = 'Please, provide a valid URL';
+    }
+    if (!description) {
+      descriptionError = 'Please provide a valid description';
+    }
+    this.setState({
+      urlError,
+      descriptionError,
+    });
+    if (urlError || descriptionError) {
+      return;
+    }
+    this.props.addLink({ url, description });
+  };
   render() {
     const fieldError = this.state.errorText ? (
       <ErrorMessage>
@@ -87,10 +112,14 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
           <TextInput
             className="input"
             placeholder="URL"
+            errorText={this.state.urlError}
+            ref={(f) => (this.url = f)}
           />
           <TextInput
             className="input"
             placeholder="Description"
+            errorText={this.state.descriptionError}
+            ref={(f) => (this.description = f)}
           />
           {fieldError}
           <ActionContainer>
@@ -100,9 +129,9 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
               Cancel
             </Button>
             <Button
-              onClick={this.login}
+              onClick={this.onAdd}
             >
-              Login
+              Add
             </Button>
           </ActionContainer>
         </Wrapper>
@@ -112,7 +141,7 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
 }
 
 LinkForm.propTypes = {
-
+  addLink: PropTypes.func.isRequired,
 };
 
 export default LinkForm;

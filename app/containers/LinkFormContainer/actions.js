@@ -4,12 +4,11 @@
  *
  */
 
-import {
-  DEFAULT_ACTION,
-} from './constants';
+import * as actions from './constants';
 
-export function defaultAction() {
+export function addLink(link) {
   return {
-    type: DEFAULT_ACTION,
+    type: actions.ADD_LINK,
+    link,
   };
 }
