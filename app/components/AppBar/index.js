@@ -6,17 +6,9 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-const FontAwesomeStyled = styled(FontAwesome)`
-  font-size: 20px;
-  color: #fff;
-  &:hover {
-    color: #e5e5e5;
-  }
-`;
+import IconButton from '../../components/IconButton';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,11 +18,6 @@ const Wrapper = styled.div`
   font-size: 24px;
   display: flex;
   justify-content: space-between;
-`;
-const AppBarDiv = styled.div``;
-const IconButton = styled.div`
-  cursor: pointer;
-  margin-right: 15px;
 `;
 const Heading = styled.div`
   text-align: left;
@@ -46,11 +33,7 @@ function AppBar({ toggleDrawer, email }) {
   const loginLink = email || (<Link to="/login">login</Link>);
   return (
     <Wrapper>
-      <AppBarDiv>
-        <IconButton onClick={toggleDrawer}>
-          <FontAwesomeStyled className="icon" name="bars" />
-        </IconButton>
-      </AppBarDiv>
+      <IconButton onClick={toggleDrawer} icon="bars" />
       <Heading>
         Coder daily
       </Heading>
