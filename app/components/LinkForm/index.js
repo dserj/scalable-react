@@ -95,7 +95,7 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
     if (urlError || descriptionError) {
       return;
     }
-    this.props.addLink({ url, description });
+    this.props.addLink({ url, description, topicName: this.props.linkformcontainer.topicName });
   };
   render() {
     const fieldError = this.state.errorText ? (
@@ -142,6 +142,9 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
 
 LinkForm.propTypes = {
   addLink: PropTypes.func.isRequired,
+  linkformcontainer: PropTypes.shape({
+    topicName: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default LinkForm;

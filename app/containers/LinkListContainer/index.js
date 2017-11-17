@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -37,7 +37,9 @@ export class LinkListContainer extends React.PureComponent { // eslint-disable-l
     return (
       <div>
         <LinkList startAdd={this.props.startAdd} links={this.props.linkListContainer.links} routeTopicName={this.props.linkListContainer.routeTopicName.name} />
-        <Route path={`${this.props.match.url}/add`} component={LinkFormContainer} />
+        <Switch>
+          <Route path={`${this.props.match.path}add`} component={LinkFormContainer} />
+        </Switch>
       </div>
     );
   }
@@ -53,7 +55,7 @@ LinkListContainer.propTypes = {
   requestLinks: PropTypes.func.isRequired,
   startAdd: PropTypes.func.isRequired,
   match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
   }).isRequired,
 };
 

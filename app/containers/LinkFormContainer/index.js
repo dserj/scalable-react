@@ -20,6 +20,7 @@ import { addLink } from './actions';
 
 export class LinkFormContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    // console.log('PROPS', this.props);
     return (
       <LinkForm {...this.props} />
     );
