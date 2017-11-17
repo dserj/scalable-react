@@ -56,7 +56,7 @@ function Link({ link }) {
       </VotingContainer>
       <DetailsContainer>
         <div>
-          <StyledLink href={link.url}>link.url</StyledLink>
+          <StyledLink href={link.url}>{link.url}</StyledLink>
         </div>
         <Description>
           {link.description}
