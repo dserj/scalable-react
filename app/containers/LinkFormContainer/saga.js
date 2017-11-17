@@ -20,8 +20,13 @@ export function* addLinkSaga() {
   yield takeLatest(actions.ADD_LINK, addLink);
 }
 
+export function* addLinkCancelSaga() {
+  yield takeLatest(actions.ADD_LINK_CANCELLED, () => put(goBack()));
+}
+
 export default function* defaultSaga() {
   yield [
     addLinkSaga(),
+    addLinkCancelSaga(),
   ];
 }

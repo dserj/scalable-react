@@ -124,7 +124,7 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
           {fieldError}
           <ActionContainer>
             <Button
-              onClick={this.cancelLogin}
+              onClick={this.props.addLinkCancelled}
             >
               Cancel
             </Button>
@@ -142,6 +142,7 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
 
 LinkForm.propTypes = {
   addLink: PropTypes.func.isRequired,
+  addLinkCancelled: PropTypes.func.isRequired,
   linkformcontainer: PropTypes.shape({
     topicName: PropTypes.string.isRequired,
   }).isRequired,

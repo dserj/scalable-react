@@ -16,7 +16,7 @@ import makeSelectLinkFormContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import LinkForm from '../../components/LinkForm';
-import { addLink } from './actions';
+import { addLink, addLinkCancelled } from './actions';
 
 export class LinkFormContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -30,6 +30,8 @@ export class LinkFormContainer extends React.Component { // eslint-disable-line 
 LinkFormContainer.propTypes = {
 // eslint-disable-next-line react/no-unused-prop-types
   addLink: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
+  addLinkCancelled: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -39,6 +41,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     addLink: (link) => dispatch(addLink(link)),
+    addLinkCancelled: () => dispatch(addLinkCancelled()),
   };
 }
 

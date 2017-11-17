@@ -20,6 +20,12 @@ export function addLinkSuccess(link) {
   };
 }
 
+export function addLinkCancelled() {
+  return {
+    type: actions.ADD_LINK_CANCELLED,
+  };
+}
+
 export function addLinkFailed(link, message) {
   return {
     type: actions.ADD_LINK_FAILED,
