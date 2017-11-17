@@ -37,14 +37,14 @@ injectGlobal`
   }
 `;
 
-function LinkList({ links, routeTopicName }) {
+function LinkList({ links, routeTopicName, startAdd }) {
   const linkNodes = links.map((l) => (<Link key={l.id} link={l} />));
   return (
     <Wrapper>
       <h1>{routeTopicName}</h1>
       {linkNodes}
       <IconButton
-        onClick={() => {}}
+        onClick={() => startAdd(routeTopicName)}
         icon="plus"
         buttonClass="button"
         iconClass="icon"
@@ -60,6 +60,7 @@ LinkList.propTypes = {
     id: PropTypes.string.isRequired,
   })),
   routeTopicName: PropTypes.string.isRequired,
+  startAdd: PropTypes.func.isRequired,
 };
 
 export default LinkList;

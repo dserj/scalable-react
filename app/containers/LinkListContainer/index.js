@@ -17,12 +17,12 @@ import makeSelectLinkListContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import LinkList from '../../components/LinkList';
-import { requestLinks } from './actions';
+import { requestLinks, startAdd } from './actions';
 import LinkFormContainer from '../../containers/LinkFormContainer';
 
 export class LinkListContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    // console.log('ROUTE TOPIC NAME: ', this.props.linkListContainer.routeTopicName.name);
+    console.log('ROUTE TOPIC NAME: ', this.props.linkListContainer.routeTopicName.name);
     this.props.requestLinks(this.props.linkListContainer.routeTopicName.name);
   }
   componentWillReceiveProps(newProps) {
@@ -36,7 +36,7 @@ export class LinkListContainer extends React.PureComponent { // eslint-disable-l
     console.log('MATCH', this.props.match);
     return (
       <div>
-        <LinkList links={this.props.linkListContainer.links} routeTopicName={this.props.linkListContainer.routeTopicName.name} />
+        <LinkList startAdd={this.props.startAdd} links={this.props.linkListContainer.links} routeTopicName={this.props.linkListContainer.routeTopicName.name} />
         <Route path={`${this.props.match.url}/add`} component={LinkFormContainer} />
       </div>
     );
@@ -51,6 +51,7 @@ LinkListContainer.propTypes = {
     }),
   }).isRequired,
   requestLinks: PropTypes.func.isRequired,
+  startAdd: PropTypes.func.isRequired,
   match: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
@@ -63,6 +64,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     requestLinks: (topicName) => { dispatch(requestLinks(topicName)); },
+    startAdd: (topicName) => { dispatch(startAdd(topicName)); },
   };
 }
 

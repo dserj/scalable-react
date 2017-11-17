@@ -26,3 +26,10 @@ export function requestLinks(topicName) {
     topicName,
   };
 }
+
+export function startAdd(topicName) {
+  return {
+    type: actions.START_ADD,
+    topicName,
+  };
+}

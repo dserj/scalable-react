@@ -10,6 +10,7 @@ import * as actions from './constants';
 const initialState = fromJS({
   topics: [],
   isDrawerOpen: false,
+  routerLocation: '/',
 });
 
 function navigationContainerReducer(state = initialState, action) {
