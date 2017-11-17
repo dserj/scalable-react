@@ -7,8 +7,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import validator from 'email-validator';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import TextInput from '../TextInput';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -23,16 +23,6 @@ const Heading = styled.div`
   font-size: 22px;
   color: #222;
   margin-bottom: 20px;
-`;
-
-const EmailInput = styled.input`
-  border-bottom: solid 1px rgba(0,0,0,0.12);
-  padding: 5px;
-  border-top: 0;  
-  border-left: 0;  
-  border-right: 0;
-  width: 100%;
-  font-size: 18px;  
 `;
 
 const ActionContainer = styled.div`
@@ -54,17 +44,10 @@ const Button = styled.div`
   }
 `;
 
-const ErrorMessage = styled.div`
-  color: #ce1313;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 14px;
-`;
-
 class Login extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {};
   login = () => {
-    const email = this.emailField.value;
+    const email = this.emailField.value(); // !!!IMPORTANT!!! how styles components work
     if (!validator.validate(email)) {
       this.setState({
         errorText: 'Please provide a valid e-mail',
@@ -80,23 +63,17 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
     this.props.cancelLogin();
   };
   render() {
-    const fieldError = this.state.errorText ? (
-      <ErrorMessage>
-        {this.state.errorText}
-      </ErrorMessage>
-    ) : null;
     return (
       <Wrapper>
         <Heading>
           Login with your e-mail
         </Heading>
-        <EmailInput
-          className={classNames('', { error: this.state.errorText })}
+        <TextInput
+          errorText={this.state.errorText}
           placeholder="Your e-mail"
-          innerRef={(f) => { this.emailField = f; }} // !!!IMPORTANT!!! how styles components work
+          ref={(f) => { this.emailField = f; }} // !!!IMPORTANT!!! how styles components work
           type="text"
         />
-        {fieldError}
         <ActionContainer>
           <Button
             onClick={this.cancelLogin}
